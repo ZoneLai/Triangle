@@ -7,7 +7,7 @@ import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
 /**
- * @authon by DELL
+ * @authon 赖忠安
  * Create on 2018/3/14.
  */
 

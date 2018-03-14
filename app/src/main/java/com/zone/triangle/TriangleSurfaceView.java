@@ -4,7 +4,7 @@ import android.content.Context;
 import android.opengl.GLSurfaceView;
 
 /**
- * @authon by DELL
+ * @authon 赖忠安
  * Create on 2018/3/14.
  */
 
