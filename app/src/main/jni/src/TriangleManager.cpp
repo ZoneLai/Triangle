@@ -9,7 +9,9 @@
 #endif
 template<> TriangleManager* Singleton<TriangleManager>::msSingleton = nullptr;
 TriangleManager::TriangleManager()
-    : _sProgramPlay(0)
+    : _widgetWidth(0)
+    , _widgetHeight(0)
+    , _sProgramPlay(0)
     , _vaoId(0)
     , _vboBuffer(0)
     , _positionLoc(-1)
@@ -40,7 +42,9 @@ void TriangleManager::onDestroy() {
     glDeleteProgram(_sProgramPlay);
 }
 
-void TriangleManager::initGL(float width, float height) {
+void TriangleManager::initGL(int widgetWidth, int widgetHeight) {
+    _widgetWidth    = widgetWidth;
+    _widgetHeight   = widgetHeight;
     if (CompileShaderProgram(camera_play_vert, camera_play_frag, &_sProgramPlay)) {
         _positionLoc	    = glGetAttribLocation(_sProgramPlay,    "a_Position");
         _colorLoc		    = glGetAttribLocation(_sProgramPlay,    "a_Color");
@@ -81,6 +85,8 @@ void TriangleManager::initGL(float width, float height) {
 }
 
 void TriangleManager::drawFrame() {
+    LOGE("======================================");
+    glViewport(0, 0, _widgetWidth, _widgetHeight);
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glBindVertexArray(_vaoId);
@@ -89,6 +95,11 @@ void TriangleManager::drawFrame() {
     glDrawArrays(GL_TRIANGLES, 0, 3);
     glBindVertexArray(0);
     glUseProgram(0);
+}
+
+void TriangleManager::onChange(int widgetWidth, int widgetHeight) {
+    _widgetWidth    = widgetWidth;
+    _widgetHeight   = widgetHeight;
 }
 
 GLint TriangleManager::getCameraTextureId() {

@@ -12,17 +12,14 @@ import javax.microedition.khronos.opengles.GL10;
  */
 
 public class TriangleRenderer implements GLSurfaceView.Renderer {
-    private static final String TAG = "TriangleRenderer";
     private static final int MAX_PREVIEW_WIDTH = 1080;
     private static final int MAX_PREVIEW_HEIGHT = 1920;
-    private Context mContext;
 
     static {
         System.loadLibrary("Triangle");
     }
 
     public TriangleRenderer(Context context) {
-        mContext = context;
         nativeOnCreate();
     }
 
@@ -60,11 +57,11 @@ public class TriangleRenderer implements GLSurfaceView.Renderer {
 
     private static native void nativeOnDestroy();
 
-    private static native void nativeInitGL(int photoWidth, int photoHeight);
+    private static native void nativeInitGL(int widgetWidth, int widgetHeight);
 
     private static native void nativeDrawFrame();
 
-    private static native void nativeOnSurfaceChanged(int width, int height);
+    private static native void nativeOnSurfaceChanged(int widgetWidth, int widgetHeight);
 
     private static native int nativeGetTextureId();
 }

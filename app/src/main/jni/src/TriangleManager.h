@@ -21,11 +21,14 @@ public:
     void                        onPause();
     void                        onStop();
     void                        onDestroy();
-    void                        initGL(float width, float height);
+    void                        initGL(int widgetWidth, int widgetHeight);
     void                        drawFrame();
+    void                        onChange(int widgetWidth, int widgetHeight);
     GLint                       getCameraTextureId();
 
 private:
+    int                         _widgetWidth;
+    int                         _widgetHeight;
     GLuint                      _sProgramPlay;
     GLuint						_vaoId;
     GLuint						_vboBuffer;

@@ -2,6 +2,9 @@ package com.zone.triangle;
 
 import android.content.Context;
 import android.opengl.GLSurfaceView;
+import android.util.AttributeSet;
+
+import java.util.jar.Attributes;
 
 /**
  * @authon 赖忠安
@@ -9,12 +12,14 @@ import android.opengl.GLSurfaceView;
  */
 
 public class TriangleSurfaceView extends GLSurfaceView {
-    private Context mContext;
     private TriangleRenderer mRenderer;
 
     public TriangleSurfaceView(Context context) {
         super(context);
-        mContext = context;
+    }
+
+    public TriangleSurfaceView(Context context, AttributeSet attributes) {
+        super(context, attributes);
         setEGLContextClientVersion(2);
         mRenderer = new TriangleRenderer(context);
         setRenderer(mRenderer);
