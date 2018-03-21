@@ -98,8 +98,13 @@ void TriangleManager::drawFrame() {
 }
 
 void TriangleManager::onChange(int widgetWidth, int widgetHeight) {
-    _widgetWidth    = widgetWidth;
-    _widgetHeight   = widgetHeight;
+    _widgetWidth            = widgetWidth;
+    _widgetHeight           = widgetHeight;
+    glm::mat4 modelM	    = glm::scale(glm::mat4(1.0f), glm::vec3(2.0f, 2.0f, 2.0f));
+    glm::mat4 viewM			= glm::lookAt(glm::vec3(0.0f, 0.0f, 6.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+    // glm::mat4 projectionM   = glm::perspective(glm::radians(45.0f), static_cast<float>(_widgetWidth) / static_cast<float>(_widgetHeight), 0.1f, 100.0f);
+    glm::mat4 projectionM   = glm::ortho(-1.0f, 1.0f, -(float) widgetHeight / widgetWidth, (float) widgetHeight / widgetWidth, 5.0f, 7.0f);
+    _mvpMatrix		        = projectionM * viewM * modelM;
 }
 
 GLint TriangleManager::getCameraTextureId() {
